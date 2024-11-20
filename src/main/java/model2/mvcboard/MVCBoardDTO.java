@@ -1,9 +1,7 @@
 package model2.mvcboard;
 
 public class MVCBoardDTO {
-    // 멤버 변수 선언 : mvcboard 테이블과 동일하게 선언 
-	// 	타입은 특별한 경우가 아니라면 String으로 선언한다. 연산이 필요한 경우에만
-	//  int, Date 타입으로 선언하면 된다. 
+    // 멤버 변수 선언
     private String idx; 
     private String id;
     private String title;
@@ -13,13 +11,7 @@ public class MVCBoardDTO {
     private String sfile;
     private int downcount;
     private int visitcount;
-    /*
-    member 테이블과 join하여 회원의 이름을 출력해야 하는 경우 사용하기 위해
-    멤버변수를 추가한다. 
-     */
     private String name;
-    
-    //생성자는 필요한 경우에만 정의하면된다. 
     
 	// 게터/세터
 	public String getIdx() {

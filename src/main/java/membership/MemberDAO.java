@@ -7,6 +7,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class MemberDAO extends JDBConnect {
 
+	public MemberDAO() {
+        super();  // JDBConnect의 기본 생성자 호출 (필요한 경우)
+    }
     // 생성자 1 : 드라이버, 커넥션 URL 등 4개의 매개변수로 정의
     public MemberDAO(String drv, String url, String id, String pw) {
         super(drv, url, id, pw);
@@ -23,9 +26,12 @@ public class MemberDAO extends JDBConnect {
         String query = "SELECT * FROM member WHERE user_id=? AND user_pwd=?";
 
         try {
+        	
+        	String encryptedPwd = encryptPassword(upwd);  
+        	
             psmt = con.prepareStatement(query);
             psmt.setString(1, uid);
-            psmt.setString(2, upwd);  // 비밀번호를 평문으로 처리
+            psmt.setString(2, encryptedPwd);
             rs = psmt.executeQuery();
 
             if (rs.next()) {
@@ -44,13 +50,12 @@ public class MemberDAO extends JDBConnect {
     // 회원가입을 위한 메서드
     public int insertMember(MemberDTO dto) {
         int result = 0;
-        String query = "INSERT INTO member (user_id, user_pwd, user_name, user_email, user_phone) " +
-                       "VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO member (user_id, user_pwd, user_name, user_email, user_phone) VALUES (?, ?, ?, ?, ?)";
 
         try {
             psmt = con.prepareStatement(query);
             psmt.setString(1, dto.getId());
-            psmt.setString(2, encryptPassword(dto.getPwd())); // 비밀번호 암호화
+            psmt.setString(2, encryptPassword(dto.getPwd()));  // 비밀번호 암호화
             psmt.setString(3, dto.getName());
             psmt.setString(4, dto.getEmail());
             psmt.setString(5, dto.getPhone());
@@ -62,6 +67,7 @@ public class MemberDAO extends JDBConnect {
 
         return result;
     }
+
 
     // 아이디 중복 체크
     public boolean checkIdExists(String userId) {
@@ -98,5 +104,30 @@ public class MemberDAO extends JDBConnect {
             e.printStackTrace();
             return null;
         }
+    }
+ // 회원수정을 위한 메서드
+ // 회원정보 수정 메서드
+    public int updateMember(MemberDTO dto) {
+        int result = 0;
+        String query = "UPDATE member SET user_pwd = ?, user_email = ?, user_phone = ? WHERE user_id= ? ";
+
+        try {
+            psmt = con.prepareStatement(query);
+            
+            // 비밀번호 암호화 후 설정
+            psmt.setString(1, encryptPassword(dto.getPwd()));  // 비밀번호 암호화
+            psmt.setString(2, dto.getEmail());
+            psmt.setString(3, dto.getPhone());
+            psmt.setString(4, dto.getId());  // 아이디는 그대로 사용
+            
+            // 쿼리 실행
+            result = psmt.executeUpdate();
+
+            System.out.println("회원 정보가 성공적으로 수정되었습니다.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }

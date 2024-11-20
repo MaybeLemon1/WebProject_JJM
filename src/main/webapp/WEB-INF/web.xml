@@ -83,6 +83,17 @@
     <url-pattern>/12Servlet/MemberAuth.mvc</url-pattern>
   </servlet-mapping>
 
+  <!-- 게시판 페이징 처리를 위한 설정값(예제 9-3) -->
+  <context-param>
+    <param-name>POSTS_PER_PAGE</param-name>
+    <param-value>2</param-value>
+  </context-param>
+  <context-param>
+    <param-name>PAGES_PER_BLOCK</param-name>
+    <param-value>2</param-value>
+  </context-param>
+  
+
   <!-- 모델2 방식의 서블릿 게시판 목록 매핑 -->
   <servlet>
     <servlet-name>MVCBoardList</servlet-name>
@@ -93,14 +104,22 @@
     <url-pattern>/mvcboard/list.do</url-pattern>
   </servlet-mapping>
   
-  <!-- 글쓰기 페이지 매핑 -->
+  <servlet>
+    <servlet-name>MVCBoardListPage</servlet-name>
+    <servlet-class>model2.mvcboard.ListPageController</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>MVCBoardListPage</servlet-name>
+    <url-pattern>/mvcboard/listPage.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 서블릿 매핑 5(예제 14-7) -->
   <servlet>
     <servlet-name>MVCBoardWrite</servlet-name>
     <servlet-class>model2.mvcboard.WriteController</servlet-class>
-    <!-- 첨부파일에 대한 용량설정 -->
     <multipart-config>
-      <max-file-size>10485760</max-file-size> <!-- 1MB -->
-      <max-request-size>104857600</max-request-size> <!-- 10MB -->
+      <max-file-size>1048576</max-file-size> <!-- 1MB -->
+      <max-request-size>10485760</max-request-size> <!-- 10MB -->
     </multipart-config>
   </servlet>  
   <servlet-mapping>

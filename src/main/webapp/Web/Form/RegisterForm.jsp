@@ -44,24 +44,21 @@
                 alert("비밀번호가 일치하지 않습니다.");
                 return false;
             }
-
             return true;  // 모든 검사를 통과하면 폼 제출
         }
     </script>
 </head>
 <body>
-
+<jsp:include page="../Main.jsp" />
 <h1>회원가입</h1>
 <form name="registerForm" method="post" action="RegisterProcess.jsp" onsubmit="return validateForm()">
     <label>아이디: <input type="text" name="id"></label>
     <button type="button" onclick="fn_idCheck()">아이디 중복 확인</button><br>
-
     <label>비밀번호: <input type="password" name="pwd"></label><br>
     <label>비밀번호 확인: <input type="password" name="pwdCheck"></label><br>
     <label>이름: <input type="text" name="name"></label><br>
     <label>이메일: <input type="email" name="email"></label><br>
     <label>전화번호: <input type="text" name="phone"></label><br>
-
     <input type="submit" value="회원가입">
 </form>
 </body>
