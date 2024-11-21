@@ -46,5 +46,18 @@ public class CookieManager {
     public static void deleteCookie(HttpServletResponse response, String cName) {    	
         makeCookie(response, cName, "", 0);
     }
+    public static boolean increaseViewCount(HttpServletRequest request, HttpServletResponse response, String cName) {
+        String viewCountCookie = readCookie(request, cName);
+
+        // 쿠키가 존재하지 않거나, 만료된 쿠키일 경우 조회수 증가
+        if (viewCountCookie.isEmpty()) {
+            // 쿠키 생성 (만료 시간은 24시간)
+            makeCookie(response, cName, "1", 60 * 60 * 24);
+            return true; // 조회수 증가
+        } else {
+            // 쿠키 값이 존재하면 조회수 증가 안함
+            return false;
+        }
+    }
 }
 

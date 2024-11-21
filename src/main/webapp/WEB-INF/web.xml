@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd" id="WebApp_ID" version="6.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd" id="WebApp_ID" version="5.0">
   <display-name>WebProject_JJM</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -86,44 +86,69 @@
   <!-- 게시판 페이징 처리를 위한 설정값(예제 9-3) -->
   <context-param>
     <param-name>POSTS_PER_PAGE</param-name>
-    <param-value>2</param-value>
+    <param-value>10</param-value>
   </context-param>
   <context-param>
     <param-name>PAGES_PER_BLOCK</param-name>
-    <param-value>2</param-value>
+    <param-value>10</param-value>
   </context-param>
   
 
-  <!-- 모델2 방식의 서블릿 게시판 목록 매핑 -->
+  <!-- 자료실 게시판 -->
   <servlet>
-    <servlet-name>MVCBoardList</servlet-name>
-    <servlet-class>model2.mvcboard.ListController</servlet-class>
+    <servlet-name>LibraryBoardListPage</servlet-name>
+    <servlet-class>model2.libraryboard.ListPageController</servlet-class>
   </servlet>  
   <servlet-mapping>
-    <servlet-name>MVCBoardList</servlet-name>
-    <url-pattern>/mvcboard/list.do</url-pattern>
+    <servlet-name>LibraryBoardListPage</servlet-name>
+    <url-pattern>/libraryboard/listPage.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-    <servlet-name>MVCBoardListPage</servlet-name>
-    <servlet-class>model2.mvcboard.ListPageController</servlet-class>
-  </servlet>  
-  <servlet-mapping>
-    <servlet-name>MVCBoardListPage</servlet-name>
-    <url-pattern>/mvcboard/listPage.do</url-pattern>
-  </servlet-mapping>
-  
-  <!-- 서블릿 매핑 5(예제 14-7) -->
-  <servlet>
-    <servlet-name>MVCBoardWrite</servlet-name>
-    <servlet-class>model2.mvcboard.WriteController</servlet-class>
+    <servlet-name>LibraryBoardWrite</servlet-name>
+    <servlet-class>model2.libraryboard.WriteController</servlet-class>
     <multipart-config>
-      <max-file-size>1048576</max-file-size> <!-- 1MB -->
-      <max-request-size>10485760</max-request-size> <!-- 10MB -->
+      <max-file-size>10485760</max-file-size> <!-- 1MB -->
+      <max-request-size>104857600</max-request-size> <!-- 10MB -->
     </multipart-config>
   </servlet>  
   <servlet-mapping>
-    <servlet-name>MVCBoardWrite</servlet-name>
-    <url-pattern>/mvcboard/write.do</url-pattern>
+    <servlet-name>LibraryBoardWrite</servlet-name>
+    <url-pattern>/libraryboard/write.do</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 자유게시판 -->
+  <servlet>
+    <servlet-name>FreeBoardListPage</servlet-name>
+    <servlet-class>model2.freeboard.ListPageController</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>FreeBoardListPage</servlet-name>
+    <url-pattern>/freeboard/listPage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FreeBoardWrite</servlet-name>
+    <servlet-class>model2.freeboard.WriteController</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>FreeBoardWrite</servlet-name>
+    <url-pattern>/freeboard/write.do</url-pattern>
+  </servlet-mapping>
+  
+    <!-- 자유게시판 -->
+  <servlet>
+    <servlet-name>QnABoardListPage</servlet-name>
+    <servlet-class>model2.qnaboard.ListPageController</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>QnABoardListPage</servlet-name>
+    <url-pattern>/qnaboard/listPage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>QnABoardWrite</servlet-name>
+    <servlet-class>model2.qnaboard.WriteController</servlet-class>
+  </servlet>  
+  <servlet-mapping>
+    <servlet-name>QnABoardWrite</servlet-name>
+    <url-pattern>/qnaboard/write.do</url-pattern>
   </servlet-mapping>
 </web-app>

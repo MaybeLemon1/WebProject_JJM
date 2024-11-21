@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 //서블릿 매핑
-@WebServlet("/13FileUpload/MultipleProcess.do")
+@WebServlet("/FileUpload/MultipleProcess.do")
 //업로드 제한 용량 
 @MultipartConfig(
 	maxFileSize = 1024 * 1024 * 1,

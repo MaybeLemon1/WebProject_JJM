@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Vector;
 
 import common.DBConnPool;
+import common.JDBConnect;
 
 /* 커넥션풀(DBCP)을 이용해서 오라클DB에 연결한다. 설정 정보는 server.xml,
 context.xml에 기술되어 있다. 이클립스는 복사본을 사용하게 되고, 원본은 
 Tomcat10.1 디렉토리 하위의 conf 폴더에 위치한다. */
-public class MyFileDAO extends DBConnPool { 
+public class MyFileDAO extends JDBConnect { 
 	
 	// 새로운 게시물을 입력합니다.
     public int insertFile(MyFileDTO dto) {

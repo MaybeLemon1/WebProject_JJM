@@ -12,16 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 /*
 어노테이션을 통해 매핑한다. 파일업로드 폼에서 submit 하면 요청을 받아
 처리한다. */
-@WebServlet("/13FileUpload/UploadProcess.do")
+@WebServlet("/FileUpload/UploadProcess.do")
 /*
 파일업로드를 위한 최대용량 설정
 maxFileSize : 파일 1개당 최대용량을 1Mb로 지정
 maxRequestSize : 첨부할 전체 파일의 용량을 10Mb로 지정 
  */
-@MultipartConfig(
-	maxFileSize = 1024 * 1024 * 1,
-	maxRequestSize = 1024 * 1024 * 10
-)
 public class UploadProcess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
