@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자료실</title>
+<title>자유 게시판</title>
 <style>a{text-decoration:none;}</style>
 </head>
 <body>

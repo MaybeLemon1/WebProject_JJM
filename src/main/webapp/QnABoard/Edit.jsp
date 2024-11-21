@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유 게시판</title>
+<title>Q&A 게시판</title>
 <script type="text/javascript">
     function validateForm(form) {
         if (form.title.value == "") {
@@ -21,7 +21,9 @@
     }
 </script>
 </head>
-<h2>자유 게시판 - 수정하기(Edit)</h2>
+<body>
+<jsp:include page="../Main.jsp" />
+<h2>Q&A 게시판 - 수정하기(Edit)</h2>
 <form name="writeFrm" method="post" action="../qnaboard/edit.do" onsubmit="return validateForm(this);">
 <input type="hidden" name="idx" value="${ dto.idx }"/>
 <input type="hidden" name="id" value="${ dto.id }"/>

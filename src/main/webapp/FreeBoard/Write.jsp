@@ -22,6 +22,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="../Main.jsp" />
 <h2>자유 게시판 - 글쓰기(Write)</h2>
 <form name="writeFrm" method="post" action="../freeboard/write.do" onsubmit="return validateForm(this);">
 <table border="1" width="90%">

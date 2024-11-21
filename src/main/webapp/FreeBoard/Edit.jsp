@@ -21,6 +21,8 @@
     }
 </script>
 </head>
+<body>
+<jsp:include page="../Main.jsp" />
 <h2>자유 게시판 - 수정하기(Edit)</h2>
 <form name="writeFrm" method="post" action="../freeboard/edit.do" onsubmit="return validateForm(this);">
 <input type="hidden" name="idx" value="${ dto.idx }"/>

@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자료실</title>
+<title>Q&A 게시판</title>
 <style>a{text-decoration:none;}</style>
 </head>
 <body>
 	<jsp:include page="../Main.jsp" />
-    <h2>자유 게시판</h2>
+    <h2>Q&A 게시판</h2>
     <!-- 검색 폼 -->
     <form method="get">  
     <table border="1" width="90%">

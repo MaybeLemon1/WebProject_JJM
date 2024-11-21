@@ -23,8 +23,8 @@
 <title>자유 게시판</title>
 </head>
 <body>
+<jsp:include page="../Main.jsp" />
 <h2>자유 게시판 - 상세 보기(View)</h2>
-
 <table border="1" width="90%">
     <colgroup>
         <col width="15%"/> <col width="35%"/>
@@ -48,7 +48,7 @@
         	${ dto.content }
         </td>
     </tr>
-    <!-- 하단 메뉴(버튼) -->
+    <!-- 하단 메뉴(버튼) --> 
     <tr>
         <td colspan="4" align="center">
         <c:if test="${sessionScope.UserId == dto.id}">

@@ -1,5 +1,7 @@
 package model2.qnaboard;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -194,5 +196,114 @@ public class MVCBoardDAO extends JDBConnect {
             e.printStackTrace();
         }
         return result;
+    }
+    public List<CommentDTO> getCommentsByBoardId(int boardId) {
+        List<CommentDTO> comments = new ArrayList<>();
+        String sql = "SELECT comment_id, user_id, content, postdate "
+        		+ " FROM qnacomment WHERE idx = ? "
+        		+ " ORDER BY postdate ASC";
+        
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, boardId);  // boardId를 쿼리에 바인딩
+            rs = psmt.executeQuery();  // 쿼리 실행
+
+            while (rs.next()) {  // 결과 처리
+                CommentDTO comment = new CommentDTO();
+                comment.setCommentId(rs.getInt("comment_id"));
+                comment.setUserId(rs.getString("user_id"));
+                comment.setContent(rs.getString("content"));
+                comment.setPostdate(rs.getDate("postdate"));
+
+                comments.add(comment);  // 리스트에 추가
+            }
+        } catch (SQLException e) {
+            System.out.println("댓글 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+        
+        return comments;  // 조회된 댓글 리스트 반환
+    }
+    // 댓글 ID로 댓글 조회 메서드
+    public CommentDTO getCommentById(int commentId) {
+        CommentDTO comment = null;
+        String sql = "SELECT comment_id, user_id, content, postdate "
+                   + " FROM qnacomment WHERE comment_id = ?";
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, commentId);  // 댓글 ID를 쿼리에 바인딩
+            rs = psmt.executeQuery();  // 쿼리 실행
+
+            if (rs.next()) {  // 결과가 있다면 댓글 정보를 DTO에 담음
+                comment = new CommentDTO();
+                comment.setCommentId(rs.getInt("comment_id"));
+                comment.setUserId(rs.getString("user_id"));
+                comment.setContent(rs.getString("content"));
+                comment.setPostdate(rs.getDate("postdate"));
+            }
+        } catch (SQLException e) {
+            System.out.println("댓글 조회 중 예외 발생");
+            e.printStackTrace();
+        }
+
+        return comment;  // 조회된 댓글 반환
+    }
+
+    // 댓글 추가 메서드
+    public int insertComment(int boardId, String userId, String content) {
+        int result = 0;
+        String sql = "INSERT INTO qnacomment (comment_id, idx, user_id, content, postdate) "
+                   + "VALUES (seq_qnacomment_num.NEXTVAL, ?, ?, ?, SYSDATE)";
+        
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, boardId);
+            psmt.setString(2, userId);
+            psmt.setString(3, content);
+            
+            result = psmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("댓글 삽입 중 예외 발생");
+            e.printStackTrace();
+        }
+
+        return result;  // 댓글 삽입 결과 반환
+    }
+    // 댓글 수정 메서드
+    // MVCBoardDAO.java 내의 댓글 수정 메서드
+    public int updateComment(int commentId, String content) {
+        int result = 0;
+        String sql = "UPDATE qnacomment SET content = ? WHERE comment_id = ?";
+
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setString(1, content);  // 수정할 내용
+            psmt.setInt(2, commentId);   // 수정할 댓글의 ID
+
+            result = psmt.executeUpdate();  // 쿼리 실행
+        } catch (SQLException e) {
+            System.out.println("댓글 수정 중 예외 발생");
+            e.printStackTrace();
+        }
+
+        return result;  // 수정 결과 반환 (성공하면 1, 실패하면 0)
+    }
+
+    // 댓글 삭제 메서드
+    public int deleteComment(int commentId) {
+        int result = 0;
+        String sql = "DELETE FROM qnacomment WHERE comment_id = ?";
+        
+        try {
+            psmt = con.prepareStatement(sql);
+            psmt.setInt(1, commentId);
+            result = psmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("댓글 삭제 중 예외 발생");
+            e.printStackTrace();
+        }
+
+        return result;  // 댓글 삭제 결과 반환
     }
 }

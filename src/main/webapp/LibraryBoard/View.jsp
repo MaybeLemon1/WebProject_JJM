@@ -22,6 +22,7 @@
 <title>자료실</title>
 </head>
 <body>
+<jsp:include page="../Main.jsp" />
 <h2>자료실 - 상세 보기(View)</h2>
 
 <table border="1" width="90%">

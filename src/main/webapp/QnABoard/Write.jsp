@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유 게시판</title>
+<title>Q&A 게시판</title>
 <script type="text/javascript">
     function validateForm(form) {  // 필수 항목 입력 확인
         if (form.title.value == "") {
@@ -22,7 +22,8 @@
 </script>
 </head>
 <body>
-<h2>자유 게시판 - 글쓰기(Write)</h2>
+<jsp:include page="../Main.jsp" />
+<h2>Q&A 게시판 - 글쓰기(Write)</h2>
 <form name="writeFrm" method="post" action="../qnaboard/write.do" onsubmit="return validateForm(this);">
 <table border="1" width="90%">
     <tr>

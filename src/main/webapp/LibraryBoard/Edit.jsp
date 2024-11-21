@@ -21,6 +21,8 @@
     }
 </script>
 </head>
+<body>
+<jsp:include page="../Main.jsp" />
 <h2>자료실 - 수정하기(Edit)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data" action="../libraryboard/edit.do" onsubmit="return validateForm(this);">
 <input type="hidden" name="idx" value="${ dto.idx }"/>

@@ -22,6 +22,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="../Main.jsp" />
 <h2>파일 첨부형 게시판 - 글쓰기(Write)</h2>
 <form name="writeFrm" method="post" enctype="multipart/form-data"
       action="../libraryboard/write.do" onsubmit="return validateForm(this);">
