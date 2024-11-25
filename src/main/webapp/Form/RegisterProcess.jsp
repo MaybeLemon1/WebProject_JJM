@@ -29,7 +29,7 @@
 
     // 회원가입 성공 여부에 따라 처리
     if (result > 0) {
-        out.print("<script>alert('회원가입이 성공적으로 완료되었습니다.'); location.href='login.jsp';</script>");
+        out.print("<script>alert('회원가입이 성공적으로 완료되었습니다.'); location.href='LoginForm.jsp';</script>");
     } else {
         out.print("<script>alert('회원가입에 실패했습니다.'); history.back();</script>");
     }
