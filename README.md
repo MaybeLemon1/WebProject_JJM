@@ -36,19 +36,21 @@
 ## 📸 구현 화면
 
 ### 🔐 로그인 화면  
-![로그인 화면](images/login.png)
+![로그인](images/userLogin.png)
 
 ### 🆕 회원가입 화면  
-![회원가입 화면](images/signup.png)
+![회원가입](images/signUp.png)
 
 ### ✍️ 회원정보 수정 화면  
-![회원정보 수정 화면](images/profile-edit.png)
+![회원정보 수정](images/userEdit.png)
 
 ### 📝 자유게시판 화면  
-![자유게시판 화면](images/freeboard.png)
+![자유게시판 리스트](images/freeboardList.png)
+![자유게시판 내용](images/freeboardView.png)
 
 ### 💬 Q&A 게시판 화면  
-![Q&A 게시판 화면](images/qna.png)
+![Q&A 게시판](images/qnaboardView.png)
 
-### 📎 자료실 화면  
-![자료실 화면](images/resources.png)
+### 📎 자료실 화면
+![자료실 글쓰기](images/libraryWrite.png)
+![자료실 내용](images/libraryView.png)
