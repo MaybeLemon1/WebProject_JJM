@@ -51,7 +51,7 @@
                 	+ loop.index)}   
             </td>
             <td align="left">
-                <a href="../qnaboard/view.do?idx=${ row.idx }">
+                <a href="../qnaboard/view.do?idx=${ row.idx }&listIndex=${ map.totalCount - (((map.pageNum-1) * map.pageSize) + loop.index) }">
                 	${ row.title }</a> 
             </td> 
             <td>${ row.id }</td>

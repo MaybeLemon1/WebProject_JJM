@@ -54,7 +54,7 @@
         <col width="15%"/> <col width="*"/>
     </colgroup>
     <tr>
-        <td>번호</td> <td>${ dto.idx }</td>
+        <td>번호</td> <td>${ param.listIndex }</td>
         <td>작성자</td> <td>${ dto.name }</td>
     </tr>
     <tr>
