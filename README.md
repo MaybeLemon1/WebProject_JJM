@@ -73,3 +73,12 @@
 </details>
 
 ---
+
+## 🗂 ERD 
+<details>
+	<summary>🗂 ERD</summary>
+	
+  ![ERD](images/WebProject_JJM_ERD.png)
+</details>
+
+
