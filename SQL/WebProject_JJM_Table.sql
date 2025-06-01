@@ -16,16 +16,6 @@ create sequence seq_board_num
     nomaxvalue
     nocycle
     nocache;
-
--- 파일 저장 테이블
-create table myfile(
-    idx number primary key,
-    title varchar2(200) not null,
-    cate varchar2(30),
-    ofile varchar2(100) not null,
-    sfile varchar2(30) not null,
-    postdate date default sysdate not null
-);
     
 -- 파일첨부형 게시판 테이블
 create table libraryboard (
@@ -68,6 +58,10 @@ create table qnaboard (
 	postdate date default sysdate not null, 	
 	visitcount number default 0 not null
 );
+
+alter table qnaboard
+	add constraint qnaboard_user_fk foreign key (user_id)
+	references member(user_id);
 
 -- Q&A 댓글 기본키 시퀀스
 create sequence seq_qnacomment_num
